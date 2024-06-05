@@ -25,7 +25,7 @@ class UserRepository:
             for user_info in users_info
         ]
 
-    def get_by_id(self, user_id: str) -> User:
+    def get_by_id(self, user_id: str) -> typing.Optional[User]:
         with open(self.json_path, 'r') as users_file:
             users_info: typing.List[typing.Dict] = json.load(users_file)
 
@@ -38,3 +38,4 @@ class UserRepository:
                     age=user_info["age"],
                     email=user_info["email"]
                 )
+        return None
