@@ -3,7 +3,7 @@ import typing
 from fastapi import HTTPException
 
 from app.users.entity import User
-from app.users.repository import UserRepository
+from app.users.ports import UserRepository
 
 
 class UserService:
@@ -14,9 +14,9 @@ class UserService:
         return self.user_repository.get()
 
     def get_by_id(self, user_id: str) -> User:
-        user = self.user_repository.get_by_id(user_id=user_id)
+        user = self.user_repository.get_by_id(identifier=user_id)
 
         if not user:
             raise HTTPException(status_code=404, detail="User not found")
 
-        return self.user_repository.get_by_id(user_id=user_id)
+        return user
