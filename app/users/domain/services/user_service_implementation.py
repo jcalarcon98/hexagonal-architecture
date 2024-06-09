@@ -2,11 +2,11 @@ import typing
 
 from fastapi import HTTPException
 
-from app.users.entity import User
-from app.users.ports import UserRepository
+from app.users.domain_model import User
+from app.users.ports import UserRepository, UserService
 
 
-class UserService:
+class UserServiceImplementation(UserService):
     def __init__(self, user_repository: UserRepository):
         self.user_repository = user_repository
 
@@ -20,3 +20,9 @@ class UserService:
             raise HTTPException(status_code=404, detail="User not found")
 
         return user
+
+    def get_something_else(self):
+        pass
+
+    def get_something_another_else(self):
+        pass

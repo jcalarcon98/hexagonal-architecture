@@ -1,8 +1,8 @@
 import json
 import typing
 
-from app.users.entity import User
-from app.users.ports import UserRepository
+from app.users.domain import User
+from app.users.domain.ports import UserRepository
 
 
 class JsonUserRepository(UserRepository):

@@ -1,7 +1,7 @@
 import typing
 from abc import ABC, abstractmethod
 
-from app.users.entity import User
+from app.users.domain import User
 
 
 class UserRepository(ABC):
