@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.users.controller import user_router
+from app.users.adapters import user_router
 
 
 def create_web_app() -> FastAPI:

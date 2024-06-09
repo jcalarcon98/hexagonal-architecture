@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 
 from app.users.adapters import JsonUserRepository
-from app.users.ports import UserRepository, UserService
-from app.users.service import UserServiceImplementation
+from app.users.domain.ports import UserRepository, UserService
+from app.users.domain.services import UserServiceImplementation
 
 user_router = APIRouter(prefix="/users")
 

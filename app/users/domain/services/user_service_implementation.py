@@ -2,8 +2,8 @@ import typing
 
 from fastapi import HTTPException
 
-from app.users.domain_model import User
-from app.users.ports import UserRepository, UserService
+from app.users.domain import User
+from app.users.domain.ports import UserRepository, UserService
 
 
 class UserServiceImplementation(UserService):

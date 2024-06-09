@@ -1,1 +1,2 @@
-from .driven import JsonUserRepository
+from .driven import JsonUserRepository, MemoryUserRepository
+from .driver import user_router
