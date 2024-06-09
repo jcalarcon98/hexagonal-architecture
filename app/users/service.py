@@ -7,8 +7,8 @@ from app.users.repository import UserRepository
 
 
 class UserService:
-    def __init__(self):
-        self.user_repository = UserRepository()
+    def __init__(self, user_repository: UserRepository):
+        self.user_repository = user_repository
 
     def get(self) -> typing.List[User]:
         return self.user_repository.get()
