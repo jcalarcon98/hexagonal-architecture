@@ -1,7 +1,7 @@
 import typing
 
 from app.users.domain import User
-from app.users.domain.ports import UserRepository
+from app.users.domain.ports.driven import UserRepository
 
 
 class MemoryUserRepository(UserRepository):
@@ -17,3 +17,7 @@ class MemoryUserRepository(UserRepository):
     def add_multiple(self, users: typing.List[User]) -> None:
         for user in users:
             self.users[user.identifier] = user
+
+    def create(self, user: User) -> User:
+        self.users[user.identifier] = user
+        return user

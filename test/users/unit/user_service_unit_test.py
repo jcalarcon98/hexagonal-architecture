@@ -3,10 +3,10 @@ import typing
 import pytest
 from faker import Faker
 
-from app.users.adapters import MemoryUserRepository
+from app.users.adapters.driven import MemoryUserRepository
 from app.users.domain import User
 from app.users.domain.exceptions import UserNotFound
-from app.users.domain.ports import UserService
+from app.users.domain.ports.driver import UserService
 from app.users.domain.services import UserServiceImplementation
 
 

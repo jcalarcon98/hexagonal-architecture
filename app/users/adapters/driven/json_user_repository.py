@@ -2,7 +2,7 @@ import json
 import typing
 
 from app.users.domain import User
-from app.users.domain.ports import UserRepository
+from app.users.domain.ports.driven import UserRepository
 
 
 class JsonUserRepository(UserRepository):
@@ -39,3 +39,13 @@ class JsonUserRepository(UserRepository):
                     email=user_info["email"]
                 )
         return None
+
+    def create(self, user: User) -> User:
+        created_user = User(
+            identifier=user.identifier,
+            name=user.name,
+            lastname=user.lastname,
+            age=user.age,
+            email=user.email
+        )
+        return created_user

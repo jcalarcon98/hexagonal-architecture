@@ -12,3 +12,7 @@ class UserRepository(ABC):
     @abstractmethod
     def get_by_id(self, identifier: str) -> typing.Optional[User]:
         pass
+
+    @abstractmethod
+    def create(self, user: User) -> User:
+        pass
