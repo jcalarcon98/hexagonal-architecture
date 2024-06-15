@@ -14,5 +14,9 @@ class UserRepository(ABC):
         pass
 
     @abstractmethod
+    def get_by_email(self, email: str) -> typing.Optional[User]:
+        pass
+
+    @abstractmethod
     def create(self, user: User) -> User:
         pass

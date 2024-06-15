@@ -40,6 +40,21 @@ class JsonUserRepository(UserRepository):
                 )
         return None
 
+    def get_by_email(self, email: str) -> typing.Optional[User]:
+        with open(self.json_path, 'r') as users_file:
+            users_info: typing.List[typing.Dict] = json.load(users_file)
+
+        for user_info in users_info:
+            if user_info["email"] == email:
+                return User(
+                    identifier=user_info["id"],
+                    name=user_info["name"],
+                    lastname=user_info["lastName"],
+                    age=user_info["age"],
+                    email=user_info["email"]
+                )
+        return None
+
     def create(self, user: User) -> User:
         created_user = User(
             identifier=user.identifier,

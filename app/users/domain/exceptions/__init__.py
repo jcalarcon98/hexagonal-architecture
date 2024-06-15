@@ -1,1 +1,1 @@
-from .user import UserNotFound
+from .user import UserNotFound, UserAlreadyExists

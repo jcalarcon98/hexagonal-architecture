@@ -21,3 +21,13 @@ class MemoryUserRepository(UserRepository):
     def create(self, user: User) -> User:
         self.users[user.identifier] = user
         return user
+
+    def get_by_email(self, email: str) -> typing.Optional[User]:
+        for user in self.users.values():
+            if user.email == email:
+                return user
+        return None
+
+    def has_user_been_created(self, user: User) -> bool:
+        saved_user = self.get_by_id(identifier=user.identifier)
+        return saved_user == user

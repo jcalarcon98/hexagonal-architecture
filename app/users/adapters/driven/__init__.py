@@ -2,3 +2,5 @@ from .json_user_repository import JsonUserRepository
 from .memory_user_repository import MemoryUserRepository
 from .console_notification_service import ConsoleNotificationService
 from .random_id_generator import RandomIdGenerator
+from .local_notification_service import LocalNotificationService
+from .local_id_generator import LocalIdGenerator

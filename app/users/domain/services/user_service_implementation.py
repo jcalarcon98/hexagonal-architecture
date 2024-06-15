@@ -1,7 +1,7 @@
 import typing
 
 from app.users.domain import User
-from app.users.domain.exceptions import UserNotFound
+from app.users.domain.exceptions import UserNotFound, UserAlreadyExists
 from app.users.domain.ports.driven import UserRepository, NotificationService, IdGenerator
 from app.users.domain.ports.driver import UserService
 
@@ -29,6 +29,11 @@ class UserServiceImplementation(UserService):
         return user
 
     def create(self, name: str, lastname: str, email: str, age: int) -> User:
+        user_attached_to_email = self.user_repository.get_by_email(email=email)
+
+        if user_attached_to_email:
+            raise UserAlreadyExists(f"The user with the given email already exists")
+
         new_user = User(
             identifier=self.id_generator.generate(),
             name=name,
