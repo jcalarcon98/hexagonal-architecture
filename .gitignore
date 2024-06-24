@@ -6,3 +6,4 @@
 
 # Pycharm
 .idea/
+.coverage
