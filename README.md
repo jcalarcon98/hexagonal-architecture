@@ -16,7 +16,8 @@ The steps to transitioning from a traditional layered application to Hexagonal A
 This branch demonstrates a typical layered application that lacks best practices, essential principles such as Dependency Injection (DI)
 and Dependency Inversion Principle (DIP), making it challenging to test and maintain, on this step we are going to have an application like this:
 
-![layered-application.jpg](resources/images/layered-application.png)
+
+<img alt="layered application" src="resources/images/layered-application.png" width="250" height="400">
 
 ### [2. Moving to Hexagonal Architecture using Transaction Script I](https://github.com/jcalarcon98/hexagonal-architecture/tree/hexagonal-architecture-structured-by-transaction-script-one)
 
