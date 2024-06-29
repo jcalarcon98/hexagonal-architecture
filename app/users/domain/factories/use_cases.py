@@ -1,6 +1,6 @@
 from app.users.domain.cases import GetUserByIdCase, GetUsersCase, CreateUserCase
 from app.users.domain.ports.driver import GetUserByIdUseCase, GetUsersUseCase, CreateUserUseCase
-from app.users.domain.ports.driven import NotificationService, IdGenerator
+from app.domain.ports.driven import NotificationService, IdGenerator
 from .repositories import get_user_repository
 from .services import get_notification_service
 from .generators import get_id_generator

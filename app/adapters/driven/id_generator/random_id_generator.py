@@ -1,6 +1,6 @@
 from uuid import uuid4
 
-from app.users.domain.ports.driven import IdGenerator
+from app.domain.ports.driven import IdGenerator
 
 
 class RandomIdGenerator(IdGenerator):

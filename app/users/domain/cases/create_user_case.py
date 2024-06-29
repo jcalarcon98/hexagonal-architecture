@@ -1,6 +1,7 @@
+from app.domain.ports.driven import IdGenerator, NotificationService
 from app.users.domain import User
 from app.users.domain.exceptions import UserAlreadyExists
-from app.users.domain.ports.driven import UserRepository, IdGenerator, NotificationService
+from app.users.domain.ports.driven import UserRepository
 from app.users.domain.ports.driver.create_user_use_case import CreateUserUseCase
 
 

@@ -1,6 +1,6 @@
 import typing
 
-from app.users.domain.ports.driven import NotificationService
+from app.domain.ports.driven import NotificationService
 
 
 class LocalNotificationService(NotificationService):
