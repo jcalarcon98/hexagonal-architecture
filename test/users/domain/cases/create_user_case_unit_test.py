@@ -3,7 +3,8 @@ import typing
 import pytest
 from faker import Faker
 
-from app.users.adapters.driven import MemoryUserRepository, LocalNotificationService, LocalIdGenerator
+from app.adapters.driven import LocalNotificationService, LocalIdGenerator
+from app.users.adapters.driven import MemoryUserRepository
 from app.users.domain import User
 from app.users.domain.cases import CreateUserCase
 from app.users.domain.exceptions import UserAlreadyExists
