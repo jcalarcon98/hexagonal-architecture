@@ -1,1 +1,2 @@
-from .user import User
+from .inputs import UserInput
+from .outputs import UserOutput

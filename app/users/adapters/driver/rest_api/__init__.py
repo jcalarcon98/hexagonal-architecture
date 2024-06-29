@@ -1,1 +1,1 @@
-from .rest_api import user_router
+from .router import user_router

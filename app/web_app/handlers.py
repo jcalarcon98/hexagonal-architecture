@@ -1,7 +1,5 @@
-from fastapi import FastAPI, Request, status
+from fastapi import Request, status
 from fastapi.responses import JSONResponse
-
-from app.users.domain.exceptions import UserNotFound
 
 
 def resource_not_found_handler(_: Request, exception: Exception):
@@ -11,7 +9,3 @@ def resource_not_found_handler(_: Request, exception: Exception):
             "error_message": str(exception)
         }
     )
-
-
-def add_exception_handlers(app: FastAPI) -> None:
-    app.exception_handler(UserNotFound)(resource_not_found_handler)
