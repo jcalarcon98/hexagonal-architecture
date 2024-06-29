@@ -25,12 +25,14 @@ class TestGetUser:
     def test__should_return_a_user_not_found_exception(self, client_factory: typing.Callable[..., TestClient]) -> None:
         class FakeGetUserByIdUseCase(GetUserByIdUseCase):
             def handle(self, user_id: str) -> User:
-                raise UserNotFound()
+                raise UserNotFound(error_message)
 
+        error_message = "User not found"
         client = client_factory(get_user_by_id_use_case=FakeGetUserByIdUseCase)
         response = client.get(url="/users/123")
 
         assert response.status_code == 404
+        assert response.json()["error_message"] == error_message
 
     def test__should_return_a_user_that_match_the_given_identifier(
         self,
