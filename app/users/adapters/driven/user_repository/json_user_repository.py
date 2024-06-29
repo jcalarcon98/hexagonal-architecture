@@ -8,7 +8,7 @@ from app.users.domain.ports.driven import UserRepository
 class JsonUserRepository(UserRepository):
 
     def __init__(self):
-        self.json_path = "app/database/users.json"
+        self.json_path = "app/users/adapters/driven/user_repository/users.json"
 
     def get(self) -> typing.List[User]:
         with open(self.json_path, 'r') as users_file:
