@@ -2,23 +2,23 @@ import typing
 
 import pytest
 from faker import Faker
+from fastapi import FastAPI
 
 from app.users.domain import User
 from fastapi.testclient import TestClient
 
 from app.users.domain.exceptions import UserNotFound
 from app.users.domain.factories import get_user_by_id_case
-from main import app
 from app.users.domain.ports.driver import GetUserByIdUseCase
 
 
 @pytest.fixture
-def client_factory() -> typing.Callable[..., TestClient]:
+def client_factory(application: FastAPI) -> typing.Callable[..., TestClient]:
     def factory(get_user_by_id_use_case: typing.Callable[..., GetUserByIdUseCase]):
-        app.dependency_overrides[get_user_by_id_case] = get_user_by_id_use_case
-        return TestClient(app)
+        application.dependency_overrides[get_user_by_id_case] = get_user_by_id_use_case
+        return TestClient(application)
     yield factory
-    app.dependency_overrides = {}
+    application.dependency_overrides = {}
 
 
 class TestGetUser:

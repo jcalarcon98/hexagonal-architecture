@@ -5,5 +5,5 @@ class UserOutput(BaseModel):
     identifier: str
     name: str
     lastname: str
-    age: str
+    age: int
     email: str
