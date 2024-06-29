@@ -26,7 +26,7 @@ def get_users(get_users_use_case: GetUsersUseCase = Depends(get_users_case)):
     ]
 
 
-@user_router.get("/{user_id}")
+@user_router.get("/{user_id}", response_model=UserOutput)
 def get_user(user_id: str, get_user_by_id_use_case: GetUserByIdUseCase = Depends(get_user_by_id_case)) -> UserOutput:
     user: User = get_user_by_id_use_case.handle(user_id=user_id)
     return UserOutput(
@@ -40,13 +40,13 @@ def get_user(user_id: str, get_user_by_id_use_case: GetUserByIdUseCase = Depends
 
 @user_router.post("/", response_model=UserOutput)
 def create_user(
-    user_dto: UserInput, create_user_user_case: CreateUserUseCase = Depends(create_user_case)
+    user_input: UserInput, create_user_user_case: CreateUserUseCase = Depends(create_user_case)
 ) -> UserOutput:
     user = create_user_user_case.handle(
-        name=user_dto.name,
-        lastname=user_dto.lastname,
-        email=user_dto.email,
-        age=user_dto.age
+        name=user_input.name,
+        lastname=user_input.lastname,
+        email=user_input.email,
+        age=user_input.age
     )
     return UserOutput(
         identifier=user.identifier,
