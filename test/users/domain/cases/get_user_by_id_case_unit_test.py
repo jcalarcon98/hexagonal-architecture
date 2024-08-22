@@ -7,6 +7,7 @@ from app.users.domain import User
 from app.users.domain.cases import GetUserByIdCase
 from app.users.domain.exceptions import UserNotFound
 from app.users.domain.ports.driver import GetUserByIdUseCase
+from app.users.domain.ports.driver.get_user_by_id_use_case import GetUserBydIdUseCaseRequest
 
 
 class TestGetUserByIdCase:
@@ -25,7 +26,12 @@ class TestGetUserByIdCase:
         get_user_by_id_case, user_repository = get_users_case_dependencies
         user_repository.add_multiple([expected_user])
 
-        user = get_user_by_id_case.handle(user_id=expected_user.identifier)
+        get_user_by_id_case_request = GetUserBydIdUseCaseRequest(
+            identifier=expected_user.identifier
+        )
+
+        response = get_user_by_id_case.handle(request=get_user_by_id_case_request)
+        user = response.user
 
         assert isinstance(user, User)
         assert user == expected_user
@@ -35,8 +41,11 @@ class TestGetUserByIdCase:
         get_users_case_dependencies: typing.Tuple[GetUserByIdCase, MemoryUserRepository]
     ) -> None:
         wrong_identifier = "any-identifier"
+        get_user_by_id_case_request = GetUserBydIdUseCaseRequest(
+            identifier=wrong_identifier
+        )
         expected_exception_message = f"The user with the identifier {wrong_identifier} does not exist"
         get_user_by_id_case, user_repository = get_users_case_dependencies
 
         with pytest.raises(UserNotFound, match=expected_exception_message):
-            get_user_by_id_case.handle(user_id=wrong_identifier)
+            get_user_by_id_case.handle(request=get_user_by_id_case_request)

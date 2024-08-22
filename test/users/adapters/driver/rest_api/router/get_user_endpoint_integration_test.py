@@ -10,6 +10,8 @@ from fastapi.testclient import TestClient
 from app.users.domain.exceptions import UserNotFound
 from app.users.domain.factories import get_user_by_id_case
 from app.users.domain.ports.driver import GetUserByIdUseCase
+from app.users.domain.ports.driver.get_user_by_id_use_case import (GetUserBydIdUseCaseRequest,
+                                                                   GetUserBydIdUseCaseResponse)
 
 
 @pytest.fixture
@@ -24,7 +26,7 @@ def client_factory(application: FastAPI) -> typing.Callable[..., TestClient]:
 class TestGetUser:
     def test__should_return_a_user_not_found_exception(self, client_factory: typing.Callable[..., TestClient]) -> None:
         class FakeGetUserByIdUseCase(GetUserByIdUseCase):
-            def handle(self, user_id: str) -> User:
+            def handle(self, request: GetUserBydIdUseCaseRequest) -> GetUserBydIdUseCaseResponse:
                 raise UserNotFound(error_message)
 
         error_message = "User not found"
@@ -40,14 +42,15 @@ class TestGetUser:
         client_factory: typing.Callable[..., TestClient]
     ) -> None:
         class FakeGetUserByIdUseCase(GetUserByIdUseCase):
-            def handle(self, user_id: str) -> User:
-                return User(
-                    identifier=user_id,
+            def handle(self, request: GetUserBydIdUseCaseRequest) -> GetUserBydIdUseCaseResponse:
+                user = User(
+                    identifier=request.identifier,
                     name=expected_data["name"],
                     lastname=expected_data["lastname"],
                     age=expected_data["age"],
                     email=expected_data["email"]
                 )
+                return GetUserBydIdUseCaseResponse(user=user)
 
         user_identifier = str(faker.uuid4())
         expected_data = {

@@ -21,7 +21,8 @@ class TestGetUsersCase:
         expected_response = []
         get_users_case, _ = get_users_case_dependencies
 
-        users = get_users_case.handle()
+        response = get_users_case.handle()
+        users = response.users
 
         assert len(users) == 0
         assert users == expected_response
@@ -37,7 +38,8 @@ class TestGetUsersCase:
         get_users_case, user_repository = get_users_case_dependencies
         user_repository.add_multiple([first_user, second_user])
 
-        users = get_users_case.handle()
+        response = get_users_case.handle()
+        users = response.users
 
         assert len(users) == len(expected_response)
         assert isinstance(users[0], User)
